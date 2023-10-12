@@ -74,7 +74,10 @@ function mutateArray(a) {
     some_total: obj.some_array.reduce((res, cur) => res + cur, 0),
   }));
 
-  return newArray;
+  // 3. Now update the `mutateArray` function so that the resulting array only includes objects with a guest_type of 'guest'
+  const filteredByGuestType = newArray.filter((obj) => obj.guest_type === "guest");
+
+  return filteredByGuestType;
 }
 
 $(document).ready(function () {
