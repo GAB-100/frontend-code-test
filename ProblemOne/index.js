@@ -57,14 +57,24 @@ var arr = [
 
 function mutateArray(a) {
   // 1. Update the `mutateArray` function to return `a` as a flattened array
-  a = a.map((obj) => ({
+  const flattenedArray = a.map((obj) => ({
     guest_type: obj.guest_type,
     first_name: obj.first_name,
     last_name: obj.last_name,
     room_no: obj.guest_booking.room_no,
     some_array: obj.guest_booking.some_array,
   }));
-  return a;
+
+  // 2. Now update the `mutateArray` function so that the 'some_array' attribute in each item of the mutated array is changed to the sum of the array called 'some_total'
+  const newArray = flattenedArray.map((obj) => ({
+    guest_type: obj.guest_type,
+    first_name: obj.first_name,
+    last_name: obj.last_name,
+    room_no: obj.room_no,
+    some_total: obj.some_array.reduce((res, cur) => res + cur, 0),
+  }));
+
+  return newArray;
 }
 
 $(document).ready(function () {
