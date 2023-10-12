@@ -77,7 +77,27 @@ function mutateArray(a) {
   // 3. Now update the `mutateArray` function so that the resulting array only includes objects with a guest_type of 'guest'
   const filteredByGuestType = newArray.filter((obj) => obj.guest_type === "guest");
 
-  return filteredByGuestType;
+  // 4. Finally, update the `mutateArray` function so the resulting array is ordered alphabetically by last and first name
+  const sortedArrayByNames = filteredByGuestType.sort((a, b) => {
+    const lastName1 = a.last_name.toLowerCase();
+    const lastName2 = b.last_name.toLowerCase();
+    const firstName1 = a.first_name.toLowerCase();
+    const firstName2 = b.first_name.toLowerCase();
+
+    if (lastName1 < lastName2) {
+      return -1;
+    } else if (lastName1 > lastName2) {
+      return 1;
+    } else if (firstName1 < firstName2) {
+      return -1;
+    } else if (firstName1 > firstName2) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+
+  return sortedArrayByNames;
 }
 
 $(document).ready(function () {
